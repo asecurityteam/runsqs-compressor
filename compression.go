@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"compress/gzip"
 	"encoding/base64"
-	"fmt"
 
 	"github.com/asecurityteam/runsqs"
 )
@@ -29,6 +28,5 @@ func (producer *CompressionSQSProducer) ProduceMessage(message []byte) error {
 	}
 	encodedBytes := make([]byte, base64.StdEncoding.EncodedLen(len(bytes.Bytes())))
 	base64.StdEncoding.Encode(encodedBytes, bytes.Bytes())
-	fmt.Println(string(encodedBytes))
 	return producer.Wrapped.ProduceMessage(encodedBytes)
 }
