@@ -19,6 +19,10 @@ type CompressionSQSProducer struct {
 	Wrapped runsqs.SQSProducer
 }
 
+func (producer *CompressionSQSProducer) QueueURL() string {
+	return producer.Wrapped.QueueURL()
+}
+
 // ProduceMessage produces a compressed, base64 encoded message to the configured sqs queue.
 func (producer *CompressionSQSProducer) ProduceMessage(ctx context.Context, messageInput *sqs.SendMessageInput) error {
 	var bytes bytes.Buffer
@@ -31,13 +35,8 @@ func (producer *CompressionSQSProducer) ProduceMessage(ctx context.Context, mess
 	}
 	encodedBytes := make([]byte, base64.StdEncoding.EncodedLen(len(bytes.Bytes())))
 	base64.StdEncoding.Encode(encodedBytes, bytes.Bytes())
-	return producer.Wrapped.ProduceMessage(ctx, &sqs.SendMessageInput{
-		DelaySeconds:            messageInput.DelaySeconds,
-		MessageAttributes:       messageInput.MessageAttributes,
-		MessageDeduplicationId:  messageInput.MessageGroupId,
-		MessageGroupId:          messageInput.MessageGroupId,
-		MessageSystemAttributes: messageInput.MessageSystemAttributes,
-		QueueUrl:                messageInput.QueueUrl,
-		MessageBody:             aws.String(string(encodedBytes)),
-	})
+
+	messageInput.QueueUrl = producer.Wrapped.QueueURL()
+	messageInput.MessageBody = aws.String(string(encodedBytes))
+	return producer.Wrapped.ProduceMessage(ctx, messageInput)
 }
