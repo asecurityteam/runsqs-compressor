@@ -3,9 +3,12 @@ package compression
 import (
 	"bytes"
 	"compress/gzip"
+	"context"
 	"encoding/base64"
 
-	"github.com/asecurityteam/runsqs"
+	"github.com/asecurityteam/runsqs/v2"
+	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/service/sqs"
 )
 
 // CompressionSQSProducer compresses the message, and calls the wrapped
@@ -16,11 +19,16 @@ type CompressionSQSProducer struct {
 	Wrapped runsqs.SQSProducer
 }
 
+// QueueURL retrieves the queue URL used by the wrapped SQS producer.
+func (producer *CompressionSQSProducer) QueueURL() string {
+	return producer.Wrapped.QueueURL()
+}
+
 // ProduceMessage produces a compressed, base64 encoded message to the configured sqs queue.
-func (producer *CompressionSQSProducer) ProduceMessage(message []byte) error {
+func (producer *CompressionSQSProducer) ProduceMessage(ctx context.Context, messageInput *sqs.SendMessageInput) error {
 	var bytes bytes.Buffer
 	gz := gzip.NewWriter(&bytes)
-	if _, err := gz.Write(message); err != nil {
+	if _, err := gz.Write([]byte(*messageInput.MessageBody)); err != nil {
 		return err
 	}
 	if err := gz.Close(); err != nil {
@@ -28,5 +36,8 @@ func (producer *CompressionSQSProducer) ProduceMessage(message []byte) error {
 	}
 	encodedBytes := make([]byte, base64.StdEncoding.EncodedLen(len(bytes.Bytes())))
 	base64.StdEncoding.Encode(encodedBytes, bytes.Bytes())
-	return producer.Wrapped.ProduceMessage(encodedBytes)
+
+	messageInput.QueueUrl = aws.String(producer.Wrapped.QueueURL())
+	messageInput.MessageBody = aws.String(string(encodedBytes))
+	return producer.Wrapped.ProduceMessage(ctx, messageInput)
 }
