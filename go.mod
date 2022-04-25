@@ -1,4 +1,4 @@
-module github.com/asecurityteam/runsqs-compressor/v2
+module github.com/asecurityteam/runsqs-compressor
 
 go 1.13
 

@@ -20,13 +20,13 @@ func TestCompression(t *testing.T) {
 	compressionProducer := CompressionSQSProducer{
 		Wrapped: mockMessageProducer,
 	}
-	queueUrl := "www.example.com"
+	queueURL := "www.example.com"
 	originalMessage := "hello world!"
 	encodedCompressedMessage := "H4sIAAAAAAAA/8pIzcnJVyjPL8pJUQQEAAD//23CtAMMAAAA"
 
-	mockMessageProducer.EXPECT().QueueURL().Return(queueUrl)
+	mockMessageProducer.EXPECT().QueueURL().Return(queueURL)
 	mockMessageProducer.EXPECT().ProduceMessage(mockContext, &sqs.SendMessageInput{
-		QueueUrl:    &queueUrl,
+		QueueUrl:    &queueURL,
 		MessageBody: &encodedCompressedMessage,
 	}).Return(nil)
 

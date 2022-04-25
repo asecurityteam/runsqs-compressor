@@ -19,6 +19,7 @@ type CompressionSQSProducer struct {
 	Wrapped runsqs.SQSProducer
 }
 
+// QueueURL retrieves the queue URL used by the wrapped SQS producer.
 func (producer *CompressionSQSProducer) QueueURL() string {
 	return producer.Wrapped.QueueURL()
 }
