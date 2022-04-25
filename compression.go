@@ -6,7 +6,7 @@ import (
 	"context"
 	"encoding/base64"
 
-	"github.com/asecurityteam/runsqs"
+	"github.com/asecurityteam/runsqs/v2"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
@@ -36,7 +36,7 @@ func (producer *CompressionSQSProducer) ProduceMessage(ctx context.Context, mess
 	encodedBytes := make([]byte, base64.StdEncoding.EncodedLen(len(bytes.Bytes())))
 	base64.StdEncoding.Encode(encodedBytes, bytes.Bytes())
 
-	messageInput.QueueUrl = producer.Wrapped.QueueURL()
+	messageInput.QueueUrl = aws.String(producer.Wrapped.QueueURL())
 	messageInput.MessageBody = aws.String(string(encodedBytes))
 	return producer.Wrapped.ProduceMessage(ctx, messageInput)
 }
