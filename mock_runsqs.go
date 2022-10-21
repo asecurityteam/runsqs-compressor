@@ -215,6 +215,21 @@ func (m *MockSQSProducer) EXPECT() *MockSQSProducerMockRecorder {
 	return m.recorder
 }
 
+// BatchProduceMessage mocks base method.
+func (m *MockSQSProducer) BatchProduceMessage(ctx context.Context, messageBatchInput *sqs.SendMessageBatchInput) (*sqs.SendMessageBatchOutput, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "BatchProduceMessage", ctx, messageBatchInput)
+	ret0, _ := ret[0].(*sqs.SendMessageBatchOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// BatchProduceMessage indicates an expected call of BatchProduceMessage.
+func (mr *MockSQSProducerMockRecorder) BatchProduceMessage(ctx, messageBatchInput interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "BatchProduceMessage", reflect.TypeOf((*MockSQSProducer)(nil).BatchProduceMessage), ctx, messageBatchInput)
+}
+
 // ProduceMessage mocks base method.
 func (m *MockSQSProducer) ProduceMessage(ctx context.Context, messageInput *sqs.SendMessageInput) error {
 	m.ctrl.T.Helper()
