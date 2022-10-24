@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	helloworld               = `hello world!`
+	helloWorld               = `hello world!`
 	encodedCompressedMessage = `H4sIAAAAAAAA/8pIzcnJVyjPL8pJUQQEAAD//23CtAMMAAAA`
 	exampleURL               = `www.example.com`
 )
@@ -27,7 +27,7 @@ func TestCompressionProduceMessage(t *testing.T) {
 		Wrapped: mockMessageProducer,
 	}
 	queueURL := exampleURL
-	originalMessage := helloworld
+	originalMessage := helloWorld
 	encodedCompressedMessage := encodedCompressedMessage
 
 	mockMessageProducer.EXPECT().QueueURL().Return(queueURL)
@@ -54,7 +54,7 @@ func TestCompressionBatchProduceMessage(t *testing.T) {
 		Wrapped: mockMessageProducer,
 	}
 	queueURL := exampleURL
-	originalMessage := helloworld
+	originalMessage := helloWorld
 	encodedCompressedMessage := encodedCompressedMessage
 
 	mockMessageProducer.EXPECT().QueueURL().Return(queueURL)
