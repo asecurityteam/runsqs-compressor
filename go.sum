@@ -1,7 +1,7 @@
 github.com/asecurityteam/logevent v1.6.1 h1:D/V11UxgZMBrktTgL3ugRO4hKdBWkz/xLBlpqDq4PoM=
 github.com/asecurityteam/logevent v1.6.1/go.mod h1:wtopE0Pe+072poxy+lGBMah604Uu6/BVwFWRwKwF3TA=
-github.com/asecurityteam/runsqs/v2 v2.0.0 h1:HhIGlmYS5KyjthZrFnntJsln3RM7uhvwXv04suQRCP8=
-github.com/asecurityteam/runsqs/v2 v2.0.0/go.mod h1:G11mzsloYaO7IJLy/1BiqFF4T+2v1jLZhijZSyPu4t8=
+github.com/asecurityteam/runsqs/v2 v2.5.0 h1:p/cG4nrTiIsH6cjLtKuqaCCs0Vh7ZCh6v35MaO1+XUs=
+github.com/asecurityteam/runsqs/v2 v2.5.0/go.mod h1:G11mzsloYaO7IJLy/1BiqFF4T+2v1jLZhijZSyPu4t8=
 github.com/aws/aws-sdk-go v1.35.0/go.mod h1:H7NKnBqNVzoTJpGfLrQkkD+ytBA93eiDYi/+8rV9s48=
 github.com/aws/aws-sdk-go v1.43.43 h1:1L06qzQvl4aC3Skfh5rV7xVhGHjIZoHcqy16NoyQ1o4=
 github.com/aws/aws-sdk-go v1.43.43/go.mod h1:y4AeaBuwd2Lk+GepC1E9v0qOiTws0MIWAX4oIKwKHZo=

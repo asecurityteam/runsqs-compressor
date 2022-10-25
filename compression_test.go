@@ -10,7 +10,13 @@ import (
 	"github.com/golang/mock/gomock"
 )
 
-func TestCompression(t *testing.T) {
+const (
+	helloWorld               = `hello world!`
+	encodedCompressedMessage = `H4sIAAAAAAAA/8pIzcnJVyjPL8pJUQQEAAD//23CtAMMAAAA`
+	exampleURL               = `www.example.com`
+)
+
+func TestCompressionProduceMessage(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
@@ -20,9 +26,9 @@ func TestCompression(t *testing.T) {
 	compressionProducer := CompressionSQSProducer{
 		Wrapped: mockMessageProducer,
 	}
-	queueURL := "www.example.com"
-	originalMessage := "hello world!"
-	encodedCompressedMessage := "H4sIAAAAAAAA/8pIzcnJVyjPL8pJUQQEAAD//23CtAMMAAAA"
+	queueURL := exampleURL
+	originalMessage := helloWorld
+	encodedCompressedMessage := encodedCompressedMessage
 
 	mockMessageProducer.EXPECT().QueueURL().Return(queueURL)
 	mockMessageProducer.EXPECT().ProduceMessage(mockContext, &sqs.SendMessageInput{
@@ -32,6 +38,38 @@ func TestCompression(t *testing.T) {
 
 	e := compressionProducer.ProduceMessage(mockContext, &sqs.SendMessageInput{
 		MessageBody: &originalMessage,
+	})
+	assert.Nil(t, e)
+
+}
+
+func TestCompressionBatchProduceMessage(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mockContext := context.Background()
+	mockMessageProducer := NewMockSQSProducer(ctrl)
+
+	compressionProducer := CompressionSQSProducer{
+		Wrapped: mockMessageProducer,
+	}
+	queueURL := exampleURL
+	originalMessage := helloWorld
+	encodedCompressedMessage := encodedCompressedMessage
+
+	mockMessageProducer.EXPECT().QueueURL().Return(queueURL)
+	mockMessageProducer.EXPECT().BatchProduceMessage(mockContext, &sqs.SendMessageBatchInput{
+		QueueUrl: &queueURL,
+		Entries: []*sqs.SendMessageBatchRequestEntry{{
+			MessageBody: &encodedCompressedMessage,
+		}},
+	}).Return(nil, nil)
+
+	_, e := compressionProducer.BatchProduceMessage(mockContext, &sqs.SendMessageBatchInput{
+		QueueUrl: &queueURL,
+		Entries: []*sqs.SendMessageBatchRequestEntry{{
+			MessageBody: &originalMessage,
+		}},
 	})
 	assert.Nil(t, e)
 
