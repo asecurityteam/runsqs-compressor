@@ -1,8 +1,6 @@
 <a id="markdown-runsqs-compressor---an-implementation-of-runsqs.SQSMessageConsumer-and-runsq.SQSMessageProducer-that-adds-compression/decompression" name="runsqs-compressor---an-implementation-of-runsqs.SQSMessageConsumer-and-runsq.SQSMessageProducer-that-adds-compression/decompression"></a>
 # runsqs-compressor - Contains implementations of runsqs.SQSMessageConsumer and unsqs.SQSMessageProducer that handles sqs message compression and decompression
 [![GoDoc](https://godoc.org/github.com/asecurityteam/runsqs-compressor?status.svg)](https://godoc.org/github.com/asecurityteam/runsqs-compressor)
-[![Build Status](https://travis-ci.com/asecurityteam/logevent.png?branch=master)](https://travis-ci.com/asecurityteam/runsqs-compressor)
-[![codecov.io](https://codecov.io/github/asecurityteam/runsqs-compressor/coverage.svg?branch=master)](https://codecov.io/github/asecurityteam/logevent?branch=master)
 <!-- TOC -->
 
 - [runsqs-compressor - An implementation of SQSMessageConsumer and SQSMessageProducer that handles compression/decompression](#runsqs-compressor---an-implementation-of-messageprocessor-that-adds-stats)
