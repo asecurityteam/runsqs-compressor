@@ -1,8 +1,19 @@
 <a id="markdown-runsqs-compressor---an-implementation-of-runsqs.SQSMessageConsumer-and-runsq.SQSMessageProducer-that-adds-compression/decompression" name="runsqs-compressor---an-implementation-of-runsqs.SQSMessageConsumer-and-runsq.SQSMessageProducer-that-adds-compression/decompression"></a>
 # runsqs-compressor - Contains implementations of runsqs.SQSMessageConsumer and unsqs.SQSMessageProducer that handles sqs message compression and decompression
 [![GoDoc](https://godoc.org/github.com/asecurityteam/runsqs-compressor?status.svg)](https://godoc.org/github.com/asecurityteam/runsqs-compressor)
-[![Build Status](https://travis-ci.com/asecurityteam/logevent.png?branch=master)](https://travis-ci.com/asecurityteam/runsqs-compressor)
-[![codecov.io](https://codecov.io/github/asecurityteam/runsqs-compressor/coverage.svg?branch=master)](https://codecov.io/github/asecurityteam/logevent?branch=master)
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=bugs)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=code_smells)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=coverage)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=ncloc)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=alert_status)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=security_rating)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=sqale_index)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=asecurityteam_runsqs-compressor&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=asecurityteam_runsqs-compressor)
+
 <!-- TOC -->
 
 - [runsqs-compressor - An implementation of SQSMessageConsumer and SQSMessageProducer that handles compression/decompression](#runsqs-compressor---an-implementation-of-messageprocessor-that-adds-stats)
