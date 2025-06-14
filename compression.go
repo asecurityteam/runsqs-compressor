@@ -6,7 +6,7 @@ import (
 	"context"
 	"encoding/base64"
 
-	"github.com/asecurityteam/runsqs/v2"
+	"github.com/asecurityteam/runsqs/v3"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/sqs"
 )
