@@ -4,7 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/service/sqs"
+	"github.com/aws/aws-sdk-go-v2/service/sqs"
+	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/golang/mock/gomock"
@@ -60,14 +61,14 @@ func TestCompressionBatchProduceMessage(t *testing.T) {
 	mockMessageProducer.EXPECT().QueueURL().Return(queueURL)
 	mockMessageProducer.EXPECT().BatchProduceMessage(mockContext, &sqs.SendMessageBatchInput{
 		QueueUrl: &queueURL,
-		Entries: []*sqs.SendMessageBatchRequestEntry{{
+		Entries: []types.SendMessageBatchRequestEntry{{
 			MessageBody: &encodedCompressedMessage,
 		}},
 	}).Return(nil, nil)
 
 	_, e := compressionProducer.BatchProduceMessage(mockContext, &sqs.SendMessageBatchInput{
 		QueueUrl: &queueURL,
-		Entries: []*sqs.SendMessageBatchRequestEntry{{
+		Entries: []types.SendMessageBatchRequestEntry{{
 			MessageBody: &originalMessage,
 		}},
 	})

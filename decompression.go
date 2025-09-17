@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/asecurityteam/runsqs/v3"
-	"github.com/aws/aws-sdk-go/service/sqs"
+	"github.com/asecurityteam/runsqs/v4"
+	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
 )
 
 // DecompressionMessageConsumerConfig is the config for creating a DecompressionMessageConsumer
@@ -50,7 +50,7 @@ type DecompressionMessageConsumer struct {
 
 // ConsumeMessage base64 decodes the message, and decompresses the message. It then calls the
 // wrapped SQSMessageConsumer
-func (t DecompressionMessageConsumer) ConsumeMessage(ctx context.Context, message *sqs.Message) runsqs.SQSMessageConsumerError {
+func (t DecompressionMessageConsumer) ConsumeMessage(ctx context.Context, message *types.Message) runsqs.SQSMessageConsumerError {
 
 	decompressedString, err := decompressString(*message.Body)
 	if err != nil {
@@ -83,7 +83,7 @@ func decompressString(message string) (string, error) {
 }
 
 // DeadLetter decompresses/decodes the message and calls the wrapped DeadLetter
-func (t DecompressionMessageConsumer) DeadLetter(ctx context.Context, message *sqs.Message) {
+func (t DecompressionMessageConsumer) DeadLetter(ctx context.Context, message *types.Message) {
 	t.wrapped.DeadLetter(ctx, message)
 }
 
@@ -112,6 +112,6 @@ func (e DecompressionMessageConsumerError) Error() string {
 }
 
 // RetryAfter returns 0, if decompression failures, it is a permenanet failure
-func (e DecompressionMessageConsumerError) RetryAfter() int64 {
+func (e DecompressionMessageConsumerError) RetryAfter() int32 {
 	return 0
 }
