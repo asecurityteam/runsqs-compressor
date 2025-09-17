@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/aws/aws-sdk-go/service/sqs"
+	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/golang/mock/gomock"
@@ -21,7 +21,7 @@ func TestDecompression(t *testing.T) {
 	}
 	originalMessage := "hello world!"
 	encodedCompressedMessage := "H4sIAAAAAAAA/8pIzcnJVyjPL8pJUQQEAAD//23CtAMMAAAA"
-	inboundSQSMessage := &sqs.Message{
+	inboundSQSMessage := &types.Message{
 		Body: &encodedCompressedMessage,
 	}
 
