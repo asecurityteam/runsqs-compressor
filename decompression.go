@@ -6,7 +6,7 @@ import (
 	"context"
 	"encoding/base64"
 	"fmt"
-	"io/ioutil"
+	"io"
 
 	"github.com/asecurityteam/runsqs/v4"
 	"github.com/aws/aws-sdk-go-v2/service/sqs/types"
@@ -74,7 +74,7 @@ func decompressString(message string) (string, error) {
 	if decompressionErr != nil {
 		return "", decompressionErr
 	}
-	output, decompressionErr := ioutil.ReadAll(gzreader)
+	output, decompressionErr := io.ReadAll(gzreader)
 	if decompressionErr != nil {
 		return "", decompressionErr
 
