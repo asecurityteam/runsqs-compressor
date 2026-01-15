@@ -1,6 +1,6 @@
 module github.com/asecurityteam/runsqs-compressor
 
-go 1.23.0
+go 1.25.6
 
 require (
 	github.com/asecurityteam/runsqs/v4 v4.1.1
